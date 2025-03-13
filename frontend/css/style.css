@@ -6,6 +6,7 @@
     padding: 0;
 }
 
+/* Body & Container */
 body {
     background: #f7f7f7;
     color: #333;
@@ -19,16 +20,16 @@ body {
 /* Form Container */
 .container {
     background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px; /* Default size for tablet and desktop */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    width: 400px; /* Default for mobile */
 }
 
 /* Headings */
 h1 {
-    font-size: 24px;
+    font-size: 22px;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -45,6 +46,11 @@ form {
     flex-direction: column;
 }
 
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
 label {
     font-weight: bold;
     margin-bottom: 5px;
@@ -54,8 +60,8 @@ input, textarea {
     padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 6px;
+    font-size: 14px;
     width: 100%;
 }
 
@@ -68,11 +74,11 @@ textarea {
 .btn {
     background: #007BFF;
     color: white;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     transition: background 0.3s;
 }
 
@@ -87,45 +93,18 @@ textarea {
 
 #loading {
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 15px;
     color: #007BFF;
 }
 
-/* RESPONSIVE DESIGN */
+/* 🔹🔹 RESPONSIVE STYLES 🔹🔹 */
 
-/* 📱 Mobile (Up to 600px wide) */
-@media screen and (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-
+/* Tablets (min-width: 600px) */
+@media screen and (min-width: 600px) {
     .container {
-        width: 100%; /* Full-width on mobile */
-        max-width: 380px;
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 22px;
-    }
-
-    input, textarea {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .btn {
-        font-size: 16px;
-        padding: 10px;
-    }
-}
-
-/* 📲 Tablet (601px - 1024px) */
-@media screen and (min-width: 601px) and (max-width: 1024px) {
-    .container {
-        max-width: 450px;
-        padding: 25px;
+        width: 80%;
+        max-width: 500px;
     }
 
     h1 {
@@ -134,26 +113,40 @@ textarea {
 
     .btn {
         font-size: 18px;
-        padding: 12px;
+        padding: 16px;
     }
 }
 
-/* 💻 Desktop (1025px and above) */
-@media screen and (min-width: 1025px) {
+/* Large Screens (min-width: 900px) */
+@media screen and (min-width: 900px) {
     .container {
-        max-width: 500px;
+        width: 60%;
+        max-width: 600px;
     }
 
     h1 {
         font-size: 26px;
     }
 
-    input, textarea {
+    label {
         font-size: 16px;
     }
 
+    input, textarea {
+        font-size: 16px;
+        padding: 14px;
+    }
+
     .btn {
-        font-size: 18px;
-        padding: 12px;
+        font-size: 20px;
+        padding: 18px;
+    }
+}
+
+/* Extra Large Screens (min-width: 1200px) */
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 50%;
+        max-width: 700px;
     }
 }
