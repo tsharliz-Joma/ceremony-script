@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Ceremony Script Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Wedding Ceremony Script Generator</h1>
+        <p>Fill in the details and generate a customized ceremony script.</p>
+        
+        <form id="ceremonyForm">
+            <label for="groomName">Groom's Name</label>
+            <input type="text" id="groomName" name="groomName" placeholder="Enter groom's name" required>
+
+            <label for="brideName">Bride's Name</label>
+            <input type="text" id="brideName" name="brideName" placeholder="Enter bride's name" required>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Time</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="venue">Venue</label>
+            <input type="text" id="venue" name="venue" placeholder="Enter venue" required>
+
+            <label for="witnessOne">Witness 1</label>
+            <input type="text" id="witnessOne" name="witnessOne" placeholder="Enter witness name" required>
+
+            <label for="witnessTwo">Witness 2</label>
+            <input type="text" id="witnessTwo" name="witnessTwo" placeholder="Enter witness name" required>
+
+            <label for="vows">Personal Vows</label>
+            <textarea id="vows" name="vows" placeholder="Enter personal vows (optional)"></textarea>
+
+            <button type="submit" class="btn">Generate Script</button>
+        </form>
+
+        <div id="loading" class="hidden">Generating document...</div>
+    </div>
+
+    <script src="js/logic.js"></script>
+</body>
+</html>
