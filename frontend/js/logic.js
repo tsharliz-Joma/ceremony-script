@@ -11,7 +11,7 @@ document
 
     try {
       const response = await fetch(
-        "https://api.ceremony-script.tsharliz.com:5600/generate-doc",
+        "https://api.ceremony-script.tsharliz.com/generate-doc",
         {
           method: "POST",
           headers: {"Content-Type": "application/json"},
