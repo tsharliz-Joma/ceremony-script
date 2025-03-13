@@ -1,8 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun,
+  AlignmentType,
+  HeadingLevel,
+  BorderStyle,
+} = require("docx");
 const fs = require("fs");
-const {Document, Packer, Paragraph, TextRun} = require("docx");
 
 const app = express();
 app.use(cors());
@@ -45,97 +53,199 @@ app.post("/generate-doc", async (req, res) => {
   }
 
   // Construct the ceremony script document
-  const doc = new Document({
-    sections: [
-      {
-        properties: {},
-        children: [
-          new Paragraph({
-            children: [new TextRun("Ceremony Script")],
-            heading: "Heading1",
-          }),
-          new Paragraph(
-            `Couple: ${groomFirstName} ${groomSurname} & ${brideFirstName} ${brideSurname}`,
-          ),
-          new Paragraph(`Date: ${date}`),
-          new Paragraph(`Location: ${venue}`),
-          new Paragraph("\nHousekeeping"),
-          new Paragraph(
-            "Good afternoon, everyone. I hope you're all enjoying this wonderful day...",
-          ),
+   const doc = new Document({
+     sections: [
+       {
+         properties: {},
+         children: [
+           new Paragraph({
+             children: [
+               new TextRun({
+                 text: "Ceremony Script",
+                 bold: true,
+                 size: 48,
+                 font: "Century Gothic",
+               }),
+             ],
+             alignment: AlignmentType.CENTER,
+             heading: HeadingLevel.TITLE,
+           }),
 
-          new Paragraph("\nArrivals"),
-          new Paragraph(`${groomFirstName} arrives with the Groomsmen`),
-          new Paragraph(`Song: ${groomsmenSong || "N/A"}`),
-          new Paragraph(`Bridesmaid Song: ${bridesmaidSong || "N/A"}`),
+           new Paragraph({
+             text: `Couple: ${groomFirstName} ${groomSurname} & ${brideFirstName} ${brideSurname}`,
+             spacing: {after: 300},
+             bold: true,
+           }),
 
-          new Paragraph("\nGiving Away"),
-          new Paragraph(
-            `${bridesFather} will be walking ${brideFirstName} down the aisle.`,
-          ),
-          new Paragraph(
-            `${bridesFather}, as ${brideFirstName}'s father, do you give ${brideFirstName}'s hand to ${groomFirstName} today?`,
-          ),
+           new Paragraph({
+             text: `Date: ${date}`,
+             spacing: {after: 200},
+             italic: true,
+           }),
 
-          new Paragraph("\nWelcome & Story of the Couple"),
-          new Paragraph(
-            `Today, ${groomFirstName} and ${brideFirstName} come before us to publicly declare their love and commitment.`,
-          ),
+           new Paragraph({
+             text: `Venue: ${venue}`,
+             spacing: {after: 200},
+             underline: {},
+           }),
 
-          new Paragraph("\nMonitum"),
-          new Paragraph(
-            "I am duly authorised by law to solemnise marriages according to law...",
-          ),
+           new Paragraph({
+             text: `Witnesses: ${witnessOne} & ${witnessTwo}`,
+             spacing: {after: 400},
+           }),
 
-          new Paragraph("\nRing Walk"),
-          new Paragraph("Who is Walking the rings down the Aisle?"),
+           // HR Line
+           new Paragraph({
+             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
+           }),
 
-          new Paragraph("\nThe Asking"),
-          new Paragraph(
-            `${groomFirstName}, do you take ${brideFirstName} to be your lawfully wedded wife?`,
-          ),
-          new Paragraph(`${groomFirstName}: I do`),
+           new Paragraph({
+             children: [
+               new TextRun({
+                 text: "Welcome & Opening Words",
+                 bold: true,
+                 size: 36,
+                 font: "Century Gothic",
+               }),
+             ],
+             spacing: {before: 400, after: 200},
+             alignment: AlignmentType.CENTER,
+           }),
 
-          new Paragraph(`\n${groomFirstName}'s Personal Vows + Legal Vows`),
-          new Paragraph(vowsGroom || "To be added"),
-          new Paragraph(
-            `I call upon the persons here present to witness that I, ${groomFirstName} ${groomSurname}, take thee, ${brideFirstName} ${brideSurname}, to be my lawfully wedded Wife.`,
-          ),
+           new Paragraph({
+             text: `Today, we gather here to celebrate the union of ${groomFirstName} and ${brideFirstName}. Marriage is a beautiful journey that begins today and lasts forever.`,
+             spacing: {after: 200},
+             alignment: AlignmentType.LEFT,
+           }),
 
-          new Paragraph(
-            `\n${brideFirstName}, do you take ${groomFirstName} to be your lawfully wedded husband?`,
-          ),
-          new Paragraph(`${brideFirstName}: I do`),
+           // HR Line
+           new Paragraph({
+             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
+           }),
 
-          new Paragraph(`\n${brideFirstName}'s Personal Vows + Legal Vows`),
-          new Paragraph(vowsBride || "To be added"),
-          new Paragraph(
-            `I call upon the persons here present to witness that I, ${brideFirstName} ${brideSurname}, take thee, ${groomFirstName} ${groomSurname}, to be my lawfully wedded Husband.`,
-          ),
+           new Paragraph({
+             children: [
+               new TextRun({
+                 text: "Giving Away the Bride",
+                 bold: true,
+                 size: 36,
+                 font: "Century Gothic",
+               }),
+             ],
+             spacing: {before: 400, after: 200},
+             alignment: AlignmentType.CENTER,
+           }),
 
-          new Paragraph("\nPronouncing"),
-          new Paragraph(
-            "Friends and family, through the vows they have shared and the rings they have exchanged...",
-          ),
-          new Paragraph("You may kiss the bride."),
+           new Paragraph({
+             text: `${bridesFather}, as ${brideFirstName}'s father, do you give ${brideFirstName}'s hand to ${groomFirstName} today?`,
+             spacing: {after: 200},
+             bold: true, // Make names bold
+           }),
 
-          new Paragraph("\nSigning Table"),
-          new Paragraph(
-            `We will now proceed with the signing. ${witnessOne} and ${witnessTwo}, please join us as the witnesses.`,
-          ),
+           // HR Line
+           new Paragraph({
+             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
+           }),
 
-          new Paragraph("\nPresentation"),
-          new Paragraph(
-            `Friends and Family, it gives me great pleasure to present to you, Mr. and Mrs. ${groomSurname}.`,
-          ),
-        ],
-      },
-    ],
-  });
+           new Paragraph({
+             children: [
+               new TextRun({
+                 text: "The Vows",
+                 bold: true,
+                 size: 36,
+                 font: "Century Gothic",
+               }),
+             ],
+             spacing: {before: 400, after: 200},
+             alignment: AlignmentType.CENTER,
+           }),
+
+           new Paragraph({
+             text: `${groomFirstName}, please recite your vows to ${brideFirstName}:`,
+             spacing: {after: 200},
+             bold: true,
+           }),
+
+           new Paragraph({
+             text: `"${vowsGroom || "Vows not provided."}"`,
+             spacing: {after: 200},
+             italic: true,
+           }),
+
+           new Paragraph({
+             text: `${brideFirstName}, please recite your vows to ${groomFirstName}:`,
+             spacing: {after: 200},
+             bold: true,
+           }),
+
+           new Paragraph({
+             text: `"${vowsBride || "Vows not provided."}"`,
+             spacing: {after: 200},
+             italic: true,
+           }),
+
+           // HR Line
+           new Paragraph({
+             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
+           }),
+
+           new Paragraph({
+             children: [
+               new TextRun({
+                 text: "The Monitum",
+                 bold: true,
+                 size: 36,
+                 font: "Century Gothic",
+               }),
+             ],
+             spacing: {before: 400, after: 200},
+             alignment: AlignmentType.CENTER,
+           }),
+
+           new Paragraph({
+             text: `"I am duly authorized by law to solemnize marriages according to law. Before you are joined in marriage in my presence and in the presence of these witnesses, I am to remind you of the solemn and binding nature of the relationship into which you are now about to enter."`,
+             spacing: {after: 200},
+             bold: true, // The entire Monitum statement is bold
+           }),
+
+           // HR Line
+           new Paragraph({
+             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
+           }),
+
+           new Paragraph({
+             children: [
+               new TextRun({
+                 text: "Final Pronouncement",
+                 bold: true,
+                 size: 36,
+                 font: "Century Gothic",
+               }),
+             ],
+             spacing: {before: 400, after: 200},
+             alignment: AlignmentType.CENTER,
+           }),
+
+           new Paragraph({
+             text: `By the power vested in me, I now pronounce you ${groomFirstName} and ${brideFirstName} as officially married. You may now kiss! 🎉`,
+             spacing: {after: 400},
+             bold: true,
+           }),
+
+           new Paragraph({
+             text: `Congratulations to Mr. and Mrs. ${groomSurname}!`,
+             spacing: {after: 600},
+             alignment: AlignmentType.CENTER,
+             bold: true,
+           }),
+         ],
+       },
+     ],
+   });
 
   // Generate the .docx file
   const buffer = await Packer.toBuffer(doc);
-  const fileName = `Ceremony_Script_${Date.now()}.docx`;
+  const fileName = `Ceremony Script - ${brideFirstName} and ${groomFirstName} - ${Date.now()}.docx`;
 
   // Send the file for download
   res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);

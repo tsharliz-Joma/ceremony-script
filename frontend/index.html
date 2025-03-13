@@ -1,69 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wedding Ceremony Script Generator</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="/js/api-key.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>Wedding Ceremony Script Generator</h1>
-        <p>Fill in the details below to generate a customized wedding ceremony script.</p>
-        
-        <form id="ceremonyForm">
-            <h2>Bride & Groom Information</h2>
+      <h1>Wedding Ceremony Script Generator</h1>
+      <p
+        >Fill in the details below to generate a customized wedding ceremony
+        script.</p
+      >
 
-            <label for="groomFirstName">Groom's First Name</label>
-            <input type="text" id="groomFirstName" name="groomFirstName" placeholder="Enter groom's first name" required>
+      <form id="ceremonyForm">
+        <h2>Bride & Groom Information</h2>
 
-            <label for="groomSurname">Groom's Last Name</label>
-            <input type="text" id="groomSurname" name="groomSurname" placeholder="Enter groom's last name" required>
+        <label for="groomFirstName">Groom's First Name</label>
+        <input
+          type="text"
+          id="groomFirstName"
+          name="groomFirstName"
+          placeholder="Enter groom's first name"
+          required />
 
-            <label for="brideFirstName">Bride's First Name</label>
-            <input type="text" id="brideFirstName" name="brideFirstName" placeholder="Enter bride's first name" required>
+        <label for="groomSurname">Groom's Last Name</label>
+        <input
+          type="text"
+          id="groomSurname"
+          name="groomSurname"
+          placeholder="Enter groom's last name"
+          required />
 
-            <label for="brideSurname">Bride's Last Name</label>
-            <input type="text" id="brideSurname" name="brideSurname" placeholder="Enter bride's last name" required>
+        <label for="brideFirstName">Bride's First Name</label>
+        <input
+          type="text"
+          id="brideFirstName"
+          name="brideFirstName"
+          placeholder="Enter bride's first name"
+          required />
 
-            <h2>Wedding Details</h2>
+        <label for="brideSurname">Bride's Last Name</label>
+        <input
+          type="text"
+          id="brideSurname"
+          name="brideSurname"
+          placeholder="Enter bride's last name"
+          required />
 
-            <label for="date">Date</label>
-            <input type="date" id="date" name="date" required>
+        <h2>Wedding Details</h2>
 
-            <label for="venue">Venue</label>
-            <input type="text" id="venue" name="venue" placeholder="Enter venue" required>
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required />
 
-            <label for="witnessOne">Witness 1</label>
-            <input type="text" id="witnessOne" name="witnessOne" placeholder="Enter witness name" required>
+        <label for="venue">Venue</label>
+        <input
+          type="text"
+          id="venue"
+          name="venue"
+          placeholder="Enter venue"
+          required />
 
-            <label for="witnessTwo">Witness 2</label>
-            <input type="text" id="witnessTwo" name="witnessTwo" placeholder="Enter witness name" required>
+        <label for="witnessOne">Witness 1</label>
+        <input
+          type="text"
+          id="witnessOne"
+          name="witnessOne"
+          placeholder="Enter witness name"
+          required />
 
-            <h2>Ceremony Customization</h2>
+        <label for="witnessTwo">Witness 2</label>
+        <input
+          type="text"
+          id="witnessTwo"
+          name="witnessTwo"
+          placeholder="Enter witness name"
+          required />
 
-            <label for="bridesFather">Bride's Father</label>
-            <input type="text" id="bridesFather" name="bridesFather" placeholder="Enter bride's father's name">
+        <h2>Ceremony Customization</h2>
 
-            <label for="groomsmenSong">Groomsmen Arrival Song</label>
-            <input type="text" id="groomsmenSong" name="groomsmenSong" placeholder="Optional">
+        <label for="bridesFather">Bride's Father</label>
+        <input
+          type="text"
+          id="bridesFather"
+          name="bridesFather"
+          placeholder="Enter bride's father's name" />
 
-            <label for="bridesmaidSong">Bridesmaid Arrival Song</label>
-            <input type="text" id="bridesmaidSong" name="bridesmaidSong" placeholder="Optional">
+        <label for="groomsmenSong">Groomsmen Arrival Song</label>
+        <input
+          type="text"
+          id="groomsmenSong"
+          name="groomsmenSong"
+          placeholder="Optional" />
 
-            <label for="vowsGroom">Groom's Personal Vows</label>
-            <textarea id="vowsGroom" name="vowsGroom" placeholder="Enter groom's personal vows"></textarea>
+        <label for="bridesmaidSong">Bridesmaid Arrival Song</label>
+        <input
+          type="text"
+          id="bridesmaidSong"
+          name="bridesmaidSong"
+          placeholder="Optional" />
 
-            <label for="vowsBride">Bride's Personal Vows</label>
-            <textarea id="vowsBride" name="vowsBride" placeholder="Enter bride's personal vows"></textarea>
+        <label for="vowsGroom">Groom's Personal Vows</label>
+        <textarea
+          id="vowsGroom"
+          name="vowsGroom"
+          placeholder="Enter groom's personal vows"></textarea>
 
-            <button type="submit" class="btn">Generate Script</button>
-        </form>
+        <label for="vowsBride">Bride's Personal Vows</label>
+        <textarea
+          id="vowsBride"
+          name="vowsBride"
+          placeholder="Enter bride's personal vows"></textarea>
 
-        <div id="loading" class="hidden">Generating document...</div>
+        <button type="submit" class="btn">Generate Script</button>
+      </form>
+
+      <div id="loading" class="hidden">Generating document...</div>
     </div>
 
     <script src="js/logic.js"></script>
-</body>
+  </body>
 </html>
