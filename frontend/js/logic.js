@@ -27,7 +27,10 @@ document
       // Trigger download
       const a = document.createElement("a");
       a.href = url;
-      a.download = "Ceremony_Script.docx";
+      const groomName = jsonData.groomFirstName || "Groom";
+      const brideName = jsonData.brideFirstName || "Bride";
+      const fileName = `Ceremony_Script_${brideName}_and_${groomName}.docx`;
+      a.download = fileName;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
