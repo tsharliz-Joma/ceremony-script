@@ -8,15 +8,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = process.env.API_KEY;
-
-app.use((req, res, next) => {
-  const apiKey = req.headers["x-api-key"];
-  if (!apiKey || apiKey !== API_KEY) {
-    return res.status(403).json({error: "Unauthorized: Invalid API Key"});
-  }
-  next();
-});
+app.use(
+  cors({
+    origin: "https://ceremony-script.tsharliz.com", // Only allow this domain
+    methods: "POST",
+    allowedHeaders: ["Content-Type"],
+  }),
+);
 
 app.post("/generate-doc", async (req, res) => {
   const {
