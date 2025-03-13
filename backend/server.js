@@ -54,6 +54,19 @@ app.post("/generate-doc", async (req, res) => {
 
   // Construct the ceremony script document
    const doc = new Document({
+     styles: {
+       default: {
+         document: {
+           run: {
+             font: "Century Gothic",
+             size: 28,
+           },
+           paragraph: {
+             spacing: {after: 200},
+           },
+         },
+       },
+     },
      sections: [
        {
          properties: {},
@@ -162,38 +175,6 @@ app.post("/generate-doc", async (req, res) => {
            }),
            new Paragraph({
              text: `"I am duly authorised by law to solemnise marriages according to law. Before you are joined in marriage in my presence and in the presence of these witnesses, I am to remind you of the solemn and binding nature of the relationship into which you are now about to enter."`,
-             spacing: {after: 200},
-             bold: true,
-           }),
-
-           // HR Line
-           new Paragraph({
-             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-             spacing: {after: 300},
-           }),
-
-           // Legal Vows
-           new Paragraph({
-             text: `Legal Vows`,
-             bold: true,
-             size: 36,
-             alignment: AlignmentType.CENTER,
-           }),
-           new Paragraph({
-             text: `Jackson, do you take Jess to be your lawfully wedded wife, to cherish in love and in friendship, with strength and joy, today, tomorrow, and for as long as the two of you shall live?`,
-             spacing: {after: 200},
-           }),
-           new Paragraph({
-             text: `${groomFirstName}: "I do"`,
-             spacing: {after: 200},
-             bold: true,
-           }),
-           new Paragraph({
-             text: `Jess, do you take Jackson to be your lawfully wedded husband, to cherish through every love ballad, through every adventure you two embark on, today, tomorrow, and for as long as the two of you shall live?`,
-             spacing: {after: 200},
-           }),
-           new Paragraph({
-             text: `${brideFirstName}: "I do"`,
              spacing: {after: 200},
              bold: true,
            }),

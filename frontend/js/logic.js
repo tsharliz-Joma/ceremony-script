@@ -14,7 +14,7 @@ document
         "https://api.ceremony-script.tsharliz.com/generate-doc",
         {
           method: "POST",
-          headers: {"Content-Type": "application/json", "x-api-key": window.API_KEY},
+          headers: {"Content-Type": "application/json"},
           body: JSON.stringify(jsonData),
         },
       );
