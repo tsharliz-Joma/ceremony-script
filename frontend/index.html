@@ -9,20 +9,27 @@
 <body>
     <div class="container">
         <h1>Wedding Ceremony Script Generator</h1>
-        <p>Fill in the details and generate a customized ceremony script.</p>
+        <p>Fill in the details below to generate a customized wedding ceremony script.</p>
         
         <form id="ceremonyForm">
-            <label for="groomName">Groom's Name</label>
-            <input type="text" id="groomName" name="groomName" placeholder="Enter groom's name" required>
+            <h2>Bride & Groom Information</h2>
 
-            <label for="brideName">Bride's Name</label>
-            <input type="text" id="brideName" name="brideName" placeholder="Enter bride's name" required>
+            <label for="groomFirstName">Groom's First Name</label>
+            <input type="text" id="groomFirstName" name="groomFirstName" placeholder="Enter groom's first name" required>
+
+            <label for="groomSurname">Groom's Last Name</label>
+            <input type="text" id="groomSurname" name="groomSurname" placeholder="Enter groom's last name" required>
+
+            <label for="brideFirstName">Bride's First Name</label>
+            <input type="text" id="brideFirstName" name="brideFirstName" placeholder="Enter bride's first name" required>
+
+            <label for="brideSurname">Bride's Last Name</label>
+            <input type="text" id="brideSurname" name="brideSurname" placeholder="Enter bride's last name" required>
+
+            <h2>Wedding Details</h2>
 
             <label for="date">Date</label>
             <input type="date" id="date" name="date" required>
-
-            <label for="time">Time</label>
-            <input type="time" id="time" name="time" required>
 
             <label for="venue">Venue</label>
             <input type="text" id="venue" name="venue" placeholder="Enter venue" required>
@@ -33,8 +40,22 @@
             <label for="witnessTwo">Witness 2</label>
             <input type="text" id="witnessTwo" name="witnessTwo" placeholder="Enter witness name" required>
 
-            <label for="vows">Personal Vows</label>
-            <textarea id="vows" name="vows" placeholder="Enter personal vows (optional)"></textarea>
+            <h2>Ceremony Customization</h2>
+
+            <label for="bridesFather">Bride's Father</label>
+            <input type="text" id="bridesFather" name="bridesFather" placeholder="Enter bride's father's name">
+
+            <label for="groomsmenSong">Groomsmen Arrival Song</label>
+            <input type="text" id="groomsmenSong" name="groomsmenSong" placeholder="Optional">
+
+            <label for="bridesmaidSong">Bridesmaid Arrival Song</label>
+            <input type="text" id="bridesmaidSong" name="bridesmaidSong" placeholder="Optional">
+
+            <label for="vowsGroom">Groom's Personal Vows</label>
+            <textarea id="vowsGroom" name="vowsGroom" placeholder="Enter groom's personal vows"></textarea>
+
+            <label for="vowsBride">Bride's Personal Vows</label>
+            <textarea id="vowsBride" name="vowsBride" placeholder="Enter bride's personal vows"></textarea>
 
             <button type="submit" class="btn">Generate Script</button>
         </form>
