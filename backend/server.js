@@ -61,7 +61,7 @@ app.post("/generate-doc", async (req, res) => {
            new Paragraph({
              children: [
                new TextRun({
-                 text: "Ceremony Script",
+                 text: `Ceremony Script`,
                  bold: true,
                  size: 48,
                  font: "Century Gothic",
@@ -72,77 +72,31 @@ app.post("/generate-doc", async (req, res) => {
            }),
 
            new Paragraph({
-             text: `Couple: ${groomFirstName} ${groomSurname} & ${brideFirstName} ${brideSurname}`,
+             text: `${brideFirstName} and ${groomFirstName} ${groomSurname}`,
              spacing: {after: 300},
              bold: true,
-           }),
-
-           new Paragraph({
-             text: `Date: ${date}`,
-             spacing: {after: 200},
-             italic: true,
-           }),
-
-           new Paragraph({
-             text: `Venue: ${venue}`,
-             spacing: {after: 200},
-             underline: {},
-           }),
-
-           new Paragraph({
-             text: `Witnesses: ${witnessOne} & ${witnessTwo}`,
-             spacing: {after: 400},
-           }),
-
-           // HR Line
-           new Paragraph({
-             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-           }),
-
-           new Paragraph({
-             children: [
-               new TextRun({
-                 text: "Welcome & Opening Words",
-                 bold: true,
-                 size: 36,
-                 font: "Century Gothic",
-               }),
-             ],
-             spacing: {before: 400, after: 200},
              alignment: AlignmentType.CENTER,
            }),
 
            new Paragraph({
-             text: `Today, we gather here to celebrate the union of ${groomFirstName} and ${brideFirstName}. Marriage is a beautiful journey that begins today and lasts forever.`,
+             text: `${date}`,
              spacing: {after: 200},
+             alignment: AlignmentType.CENTER,
+           }),
+
+           new Paragraph({
+             text: `Housekeeping`,
+             spacing: {after: 200},
+             bold: true,
+             size: 36,
              alignment: AlignmentType.LEFT,
            }),
 
-           // HR Line
            new Paragraph({
-             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-           }),
-
-           new Paragraph({
-             children: [
-               new TextRun({
-                 text: "Giving Away the Bride",
-                 bold: true,
-                 size: 36,
-                 font: "Century Gothic",
-               }),
-             ],
-             spacing: {before: 400, after: 200},
-             alignment: AlignmentType.CENTER,
-           }),
-
-           new Paragraph({
-             text: `${bridesFather}, as ${brideFirstName}'s father, do you give ${brideFirstName}'s hand to ${groomFirstName} today?`,
+             text: `Good afternoon, everyone. I hope you're all enjoying this wonderful day. Before we commence today's ceremony, I'd like to address a few housekeeping items.`,
              spacing: {after: 200},
-             bold: true, // Make names bold
            }),
 
-           // HR Line
            new Paragraph({
              border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
            }),
@@ -150,92 +104,105 @@ app.post("/generate-doc", async (req, res) => {
            new Paragraph({
              children: [
                new TextRun({
-                 text: "The Vows",
+                 text: `Arrivals`,
                  bold: true,
                  size: 36,
                  font: "Century Gothic",
                }),
              ],
-             spacing: {before: 400, after: 200},
+             spacing: {after: 200},
+           }),
+
+           new Paragraph({
+             text: `${groomFirstName} arrives with the groomsmen. Song: ${
+               groomsmenSong || "Not Specified"
+             }`,
+             spacing: {after: 200},
+           }),
+
+           new Paragraph({
+             text: `Bridesmaid Song: ${bridesmaidSong || "Not Specified"}`,
+             spacing: {after: 200},
+           }),
+
+           new Paragraph({
+             text: `May everyone please stand for the bride`,
+             spacing: {after: 200},
+             bold: true,
              alignment: AlignmentType.CENTER,
            }),
 
            new Paragraph({
-             text: `${groomFirstName}, please recite your vows to ${brideFirstName}:`,
+             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
+           }),
+
+           new Paragraph({
+             text: `Giving Away`,
+             spacing: {after: 200},
+             bold: true,
+             size: 36,
+           }),
+
+           new Paragraph({
+             text: `${bridesFather} will be walking ${brideFirstName} down the aisle.`,
              spacing: {after: 200},
              bold: true,
            }),
 
            new Paragraph({
-             text: `"${vowsGroom || "Vows not provided."}"`,
+             text: `${bridesFather}, as ${brideFirstName}’s father, guardian angel, and protector, do you give ${brideFirstName}’s hand to ${groomFirstName} today?`,
              spacing: {after: 200},
-             italic: true,
            }),
 
-           new Paragraph({
-             text: `${brideFirstName}, please recite your vows to ${groomFirstName}:`,
-             spacing: {after: 200},
-             bold: true,
-           }),
-
-           new Paragraph({
-             text: `"${vowsBride || "Vows not provided."}"`,
-             spacing: {after: 200},
-             italic: true,
-           }),
-
-           // HR Line
            new Paragraph({
              border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
            }),
 
            new Paragraph({
-             children: [
-               new TextRun({
-                 text: "The Monitum",
-                 bold: true,
-                 size: 36,
-                 font: "Century Gothic",
-               }),
-             ],
-             spacing: {before: 400, after: 200},
+             text: `The Monitum`,
+             spacing: {after: 200},
+             bold: true,
+             size: 36,
              alignment: AlignmentType.CENTER,
            }),
 
            new Paragraph({
-             text: `"I am duly authorized by law to solemnize marriages according to law. Before you are joined in marriage in my presence and in the presence of these witnesses, I am to remind you of the solemn and binding nature of the relationship into which you are now about to enter."`,
+             text: `"I am duly authorised by law to solemnise marriages according to law. Before you are joined in marriage in my presence and in the presence of these witnesses, I am to remind you of the solemn and binding nature of the relationship into which you are now about to enter. Marriage, according to law in Australia, is the union of two people to the exclusion of all others, voluntarily entered into for life."`,
              spacing: {after: 200},
-             bold: true, // The entire Monitum statement is bold
+             bold: true,
            }),
 
-           // HR Line
            new Paragraph({
              border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
            }),
 
            new Paragraph({
-             children: [
-               new TextRun({
-                 text: "Final Pronouncement",
-                 bold: true,
-                 size: 36,
-                 font: "Century Gothic",
-               }),
-             ],
-             spacing: {before: 400, after: 200},
+             text: `The Asking`,
+             spacing: {after: 200},
+             bold: true,
+             size: 36,
              alignment: AlignmentType.CENTER,
            }),
 
            new Paragraph({
-             text: `By the power vested in me, I now pronounce you ${groomFirstName} and ${brideFirstName} as officially married. You may now kiss! 🎉`,
-             spacing: {after: 400},
+             text: `${groomFirstName}, do you take ${brideFirstName} to be your lawfully wedded wife, to cherish in love and in friendship, with strength and joy, today, tomorrow, and for as long as the two of you shall live?`,
+             spacing: {after: 200},
+           }),
+
+           new Paragraph({
+             text: `${groomFirstName}: "I do"`,
+             spacing: {after: 200},
              bold: true,
            }),
 
            new Paragraph({
-             text: `Congratulations to Mr. and Mrs. ${groomSurname}!`,
-             spacing: {after: 600},
-             alignment: AlignmentType.CENTER,
+             text: `${brideFirstName}, do you take ${groomFirstName} to be your lawfully wedded husband, to cherish through every love ballad, through every adventure you two embark on, today, tomorrow, and for as long as the two of you shall live?`,
+             spacing: {after: 200},
+           }),
+
+           new Paragraph({
+             text: `${brideFirstName}: "I do"`,
+             spacing: {after: 200},
              bold: true,
            }),
          ],
