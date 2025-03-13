@@ -1,11 +1,22 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 const fs = require("fs");
 const {Document, Packer, Paragraph, TextRun} = require("docx");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const API_KEY = process.env.API_KEY;
+
+app.use((req, res, next) => {
+  const apiKey = req.headers["x-api-key"];
+  if (!apiKey || apiKey !== API_KEY) {
+    return res.status(403).json({error: "Unauthorized: Invalid API Key"});
+  }
+  next();
+});
 
 app.post("/generate-doc", async (req, res) => {
   const {
