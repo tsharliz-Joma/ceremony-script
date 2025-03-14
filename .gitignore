@@ -1,0 +1,11 @@
+.cache/
+.npm/
+.pm2/
+.ssh/
+.bash_history
+.bash_logout
+.bashrc
+.gitconfig
+.profile
+.sudo_as_admin_successful
+.DS_Store

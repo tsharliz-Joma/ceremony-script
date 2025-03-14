@@ -1,0 +1,7 @@
+*.env
+.env.pm2/
+.ssh/
+.bash_history
+.pm2/
+.ssh/
+.bash_history
