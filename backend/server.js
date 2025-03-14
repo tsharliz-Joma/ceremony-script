@@ -87,29 +87,45 @@ app.post("/generate-doc", async (req, res) => {
           }),
 
           new Paragraph({
-            bold: true,
-            text: `${groomFirstName} ${groomSurname} + ${brideFirstName} ${brideSurname}`,
-            spacing: {after: styles.SPACING.afterTitle},
+            children: [
+              new TextRun({
+                text: `${groomFirstName} ${groomSurname} + ${brideFirstName} ${brideSurname}`,
+                bold: true,
+                spacing: {after: styles.SPACING.afterTitle},
+              }),
+            ],
             alignment: AlignmentType.CENTER,
           }),
 
           new Paragraph({
-            text: `${date}`,
-            spacing: {after: styles.SPACING.afterHeader},
+            children: [
+              new TextRun({
+                text: `${date}`,
+                spacing: {after: styles.SPACING.afterHeader},
+              }),
+            ],
             alignment: AlignmentType.CENTER,
           }),
 
           // Housekeeping
           new Paragraph({
-            text: `Housekeeping`,
-            bold: true,
-            size: styles.SIZES.sectionHeader,
+            children: [
+              new TextRun({
+                text: `Housekeeping`,
+                bold: true,
+                size: styles.SIZES.sectionHeader,
+                color: styles.COLORS.title,
+              }),
+            ],
             alignment: AlignmentType.CENTER,
-            color: styles.COLORS.title,
           }),
           new Paragraph({
-            text: `Good afternoon, everyone. I hope you're all enjoying this wonderful day. Before we commence today's ceremony, I'd like to address a few housekeeping items.`,
-            spacing: {after: styles.SPACING.afterHeader},
+            children: [
+              new TextRun({
+                text: `Good afternoon, everyone. I hope you're all enjoying this wonderful day. Before we commence today's ceremony, I'd like to address a few housekeeping items.`,
+                spacing: {after: styles.SPACING.afterHeader},
+              }),
+            ],
           }),
 
           // HR Line
@@ -120,17 +136,40 @@ app.post("/generate-doc", async (req, res) => {
 
           // Giving Away
           new Paragraph({
-            text: `Giving Away`,
-            bold: true,
-            size: styles.SIZES.sectionHeader,
+            children: [
+              new TextRun({
+                text: `Giving Away`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Multiply by 2 for docx.js
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
+            alignment: AlignmentType.CENTER,
           }),
+
           new Paragraph({
-            text: `${bridesFather} will be walking ${brideFirstName} down the aisle.`,
+            children: [
+              new TextRun({
+                text: `${bridesFather} will be walking ${brideFirstName} down the aisle.`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
           }),
+
           new Paragraph({
-            text: `${bridesFather}, as ${brideFirstName}’s father, guardian angel and protector, do you give ${brideFirstName}’s hand to ${groomFirstName} today?`,
+            children: [
+              new TextRun({
+                text: `${bridesFather}, as ${brideFirstName}’s father, guardian angel, and protector, do you give ${brideFirstName}’s hand to ${groomFirstName} today?`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
 
@@ -142,23 +181,53 @@ app.post("/generate-doc", async (req, res) => {
 
           // Welcome
           new Paragraph({
-            text: `Welcome`,
-            bold: true,
-            size: styles.SIZES.sectionHeader,
+            children: [
+              new TextRun({
+                text: `Welcome`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Multiply by 2 for docx.js
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
+            alignment: AlignmentType.CENTER,
           }),
+
           new Paragraph({
-            text: `Thank you all for being here to celebrate and support ${brideFirstName} and ${groomFirstName}. Today marks the beginning of their next chapter together.`,
+            children: [
+              new TextRun({
+                text: `Thank you all for being here to celebrate and support ${brideFirstName} and ${groomFirstName}. Today marks the beginning of their next chapter together.`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
 
           // Prayer
           new Paragraph({
-            text: `Prayer`,
-            bold: true,
-            size: styles.SIZES.sectionHeader,
+            children: [
+              new TextRun({
+                text: `Prayer`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2,
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
+            alignment: AlignmentType.CENTER,
           }),
+
           new Paragraph({
-            text: `Lord Jesus, we thank you for bringing ${brideFirstName} and ${groomFirstName} together. May their love continue to grow, and may their marriage be blessed with strength, faith, and commitment.`,
+            children: [
+              new TextRun({
+                text: `Lord Jesus, we thank you for bringing ${brideFirstName} and ${groomFirstName} together. May their love continue to grow, and may their marriage be blessed with strength, faith, and commitment.`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
 
@@ -170,12 +239,27 @@ app.post("/generate-doc", async (req, res) => {
 
           // Story of the Couple
           new Paragraph({
-            text: `Story of ${brideFirstName} & ${groomFirstName}`,
-            bold: true,
-            size: styles.SIZES.text,
+            children: [
+              new TextRun({
+                text: `Story of ${brideFirstName} & ${groomFirstName}`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Correct font size scaling
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader, // Apply color styling
+              }),
+            ],
+            alignment: AlignmentType.CENTER,
           }),
+
           new Paragraph({
-            text: `2016, a sunny day, a class comedian, and a sporty spice. Who would have known this beautiful combination would bring us all here today?`,
+            children: [
+              new TextRun({
+                text: `2016, a sunny day, a class comedian, and a sporty spice. Who would have known this beautiful combination would bring us all here today?`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText, // Apply standard text color
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
 
@@ -187,15 +271,29 @@ app.post("/generate-doc", async (req, res) => {
 
           // Monitum
           new Paragraph({
-            text: `The Monitum`,
-            bold: true,
-            size: styles.SIZES.text,
+            children: [
+              new TextRun({
+                text: `The Monitum`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Correct font size scaling
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader, // Apply color styling
+              }),
+            ],
             alignment: AlignmentType.CENTER,
           }),
+
           new Paragraph({
-            text: `"I am duly authorised by law to solemnise marriages according to law. Before you are joined in marriage in my presence and in the presence of these witnesses, I am to remind you of the solemn and binding nature of the relationship into which you are now about to enter."`,
+            children: [
+              new TextRun({
+                text: `"I am duly authorised by law to solemnise marriages according to law. Before you are joined in marriage in my presence and in the presence of these witnesses, I am to remind you of the solemn and binding nature of the relationship into which you are now about to enter."`,
+                bold: true,
+                size: styles.SIZES.text * 2, // Ensure proper size scaling
+                font: styles.FONT,
+                color: styles.COLORS.legalText, // Apply legal text color
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
           }),
 
           // HR Line
@@ -204,46 +302,106 @@ app.post("/generate-doc", async (req, res) => {
             spacing: {after: styles.SPACING.afterTitle},
           }),
 
-          // Legal and Personal Vows (Nested Format)
+          // Groom's Legal and Personal Vows (Nested Format)
           new Paragraph({
-            text: `~ ${groomFirstName}`,
-            bold: true,
-            size: styles.SIZES.text,
+            children: [
+              new TextRun({
+                text: `~ ${groomFirstName}`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Ensure correct size scaling
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
             alignment: AlignmentType.LEFT,
           }),
+
           new Paragraph({
-            text: `${groomFirstName}, do you take ${brideFirstName}, to be your lawfully wedded wife, to cherish in love and in friendship, with strength and joy, today, tomorrow, and for as long as the two of you shall live?`,
+            children: [
+              new TextRun({
+                text: `${groomFirstName}, do you take ${brideFirstName}, to be your lawfully wedded wife, to cherish in love and in friendship, with strength and joy, today, tomorrow, and for as long as the two of you shall live?`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-          }),
-          new Paragraph({
-            text: `${groomFirstName}: "I do"`,
-            spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
           }),
 
           new Paragraph({
-            text: `${groomFirstName}'s Personal Vows + Legal Vows`,
+            children: [
+              new TextRun({
+                text: `${groomFirstName}: "I do"`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.vows,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
-          }),
-          new Paragraph({
-            text: `"${vowsGroom}"`,
-            spacing: {after: styles.SPACING.afterHeader},
-            italic: true,
           }),
 
           new Paragraph({
-            text: `I call upon the persons here present`,
+            children: [
+              new TextRun({
+                text: `${groomFirstName}'s Personal Vows + Legal Vows`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
+
           new Paragraph({
-            text: `to witness that I, ${groomFirstName} ${groomSurname},`,
+            children: [
+              new TextRun({
+                text: `"${vowsGroom}"`,
+                italic: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.vows,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
+
           new Paragraph({
-            text: `take thee, ${brideFirstName} ${brideSurname}, to be my lawful wedded wife.`,
+            children: [
+              new TextRun({
+                text: `I call upon the persons here present`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `to witness that I, ${groomFirstName} ${groomSurname},`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
+            spacing: {after: styles.SPACING.afterHeader},
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `take thee, ${brideFirstName} ${brideSurname}, to be my lawful wedded wife.`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.legalText,
+              }),
+            ],
+            spacing: {after: styles.SPACING.afterHeader},
           }),
 
           // HR Line
@@ -252,45 +410,106 @@ app.post("/generate-doc", async (req, res) => {
             spacing: {after: styles.SPACING.afterTitle},
           }),
 
+          // Bride's Legal and Personal Vows (Nested Format)
           new Paragraph({
-            text: `~ ${brideFirstName}`,
-            bold: true,
-            size: styles.SIZES.text,
+            children: [
+              new TextRun({
+                text: `~ ${brideFirstName}`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Ensure correct size scaling
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
             alignment: AlignmentType.LEFT,
           }),
+
           new Paragraph({
-            text: `${brideFirstName}, do you take ${groomFirstName}, to be your lawfully wedded husband, to cherish through every love ballad, through every adventure you two embark on, today, tomorrow and for as long as the two of you shall live?`,
+            children: [
+              new TextRun({
+                text: `${brideFirstName}, do you take ${groomFirstName}, to be your lawfully wedded husband, to cherish through every love ballad, through every adventure you two embark on, today, tomorrow, and for as long as the two of you shall live?`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-          }),
-          new Paragraph({
-            text: `${brideFirstName}: "I do"`,
-            spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
           }),
 
           new Paragraph({
-            text: `${brideFirstName}'s Personal Vows + Legal Vows`,
+            children: [
+              new TextRun({
+                text: `${brideFirstName}: "I do"`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.vows,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
-          }),
-          new Paragraph({
-            text: `"${vowsBride}"`,
-            spacing: {after: styles.SPACING.afterHeader},
-            italic: true,
           }),
 
           new Paragraph({
-            text: `I call upon the persons here present`,
+            children: [
+              new TextRun({
+                text: `${brideFirstName}'s Personal Vows + Legal Vows`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
+
           new Paragraph({
-            text: `to witness that I, ${brideFirstName} ${brideSurname},`,
+            children: [
+              new TextRun({
+                text: `"${vowsBride}"`,
+                italic: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.vows,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
+
           new Paragraph({
-            text: `take thee, ${groomFirstName} ${groomSurname}, to be my lawful wedded husband.`,
+            children: [
+              new TextRun({
+                text: `I call upon the persons here present`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
-            bold: true,
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `to witness that I, ${brideFirstName} ${brideSurname},`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
+            spacing: {after: styles.SPACING.afterHeader},
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `take thee, ${groomFirstName} ${groomSurname}, to be my lawful wedded husband.`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.legalText,
+              }),
+            ],
+            spacing: {after: styles.SPACING.afterHeader},
           }),
 
           // HR Line
@@ -301,20 +520,41 @@ app.post("/generate-doc", async (req, res) => {
 
           // Pronouncement
           new Paragraph({
-            text: `Pronouncement`,
-            bold: true,
-            size: styles.SIZES.text,
+            children: [
+              new TextRun({
+                text: `Pronouncement`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Ensure correct size scaling
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
             alignment: AlignmentType.CENTER,
           }),
+
           new Paragraph({
-            text: `Friends and family, through the vows they have shared and the rings they have exchanged, ${groomFirstName} and ${brideFirstName} have united their lives in the sacred bond of marriage.`,
+            children: [
+              new TextRun({
+                text: `Friends and family, through the vows they have shared and the rings they have exchanged, ${groomFirstName} and ${brideFirstName} have united their lives in the sacred bond of marriage.`,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
             spacing: {after: styles.SPACING.afterHeader},
           }),
 
           new Paragraph({
-            text: `You may now kiss the bride!`,
+            children: [
+              new TextRun({
+                text: `You may now kiss the bride!`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.vows, // Highlighting the big moment
+              }),
+            ],
             spacing: {after: 400},
-            bold: true,
           }),
 
           // HR Line
@@ -325,15 +565,35 @@ app.post("/generate-doc", async (req, res) => {
 
           // Presentation
           new Paragraph({
-            text: `Presentation`,
-            bold: true,
-            size: styles.SIZES.text,
+            children: [
+              new TextRun({
+                text: `Presentation`,
+                bold: true,
+                size: styles.SIZES.sectionHeader * 2, // Ensure correct size scaling
+                font: styles.FONT,
+                color: styles.COLORS.sectionHeader,
+              }),
+            ],
             alignment: AlignmentType.CENTER,
           }),
+
           new Paragraph({
-            text: `Ladies and gentlemen, it gives me great pleasure to present to you for the first time as a married couple, Mr. and Mrs. ${groomSurname}!`,
+            children: [
+              new TextRun({
+                text: `Ladies and gentlemen, it gives me great pleasure to present to you for the first time as a married couple, `,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+              new TextRun({
+                text: `Mr. and Mrs. ${groomSurname}!`,
+                bold: true,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.vows, // Highlighting the couple's name
+              }),
+            ],
             spacing: {after: 400},
-            bold: true,
             alignment: AlignmentType.CENTER,
           }),
         ],
