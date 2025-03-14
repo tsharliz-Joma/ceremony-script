@@ -60,7 +60,7 @@ app.post("/generate-doc", async (req, res) => {
         document: {
           run: {
             font: styles.FONT,
-            size: styles.SIZES.small,
+            size: styles.SIZES.small * 2,
           },
           paragraph: {
             spacing: {after: styles.SPACING.afterHeader},
@@ -78,7 +78,7 @@ app.post("/generate-doc", async (req, res) => {
               new TextRun({
                 text: `Ceremony Script`,
                 bold: true,
-                size: styles.SIZES.title,
+                size: styles.SIZES.title * 2,
                 font: styles.FONT,
               }),
             ],
@@ -91,6 +91,7 @@ app.post("/generate-doc", async (req, res) => {
               new TextRun({
                 text: `${groomFirstName} ${groomSurname} + ${brideFirstName} ${brideSurname}`,
                 bold: true,
+                size: styles.SIZES.text * 2,
                 spacing: {after: styles.SPACING.afterTitle},
               }),
             ],
@@ -101,6 +102,7 @@ app.post("/generate-doc", async (req, res) => {
             children: [
               new TextRun({
                 text: `${date}`,
+                size: styles.SIZES.small * 2,
                 spacing: {after: styles.SPACING.afterHeader},
               }),
             ],
