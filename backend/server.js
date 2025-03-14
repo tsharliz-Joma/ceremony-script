@@ -124,7 +124,7 @@ app.post("/generate-doc", async (req, res) => {
               new TextRun({
                 text: `Good afternoon, everyone. I hope you're all enjoying this wonderful day. Before we commence today's ceremony, I'd like to address a few housekeeping items.`,
                 spacing: {after: styles.SPACING.afterHeader},
-                size: styles.SIZES.text,
+                size: styles.SIZES.text
               }),
             ],
           }),
@@ -374,16 +374,26 @@ app.post("/generate-doc", async (req, res) => {
                 text: `I call upon the persons here present`,
                 size: styles.SIZES.text * 2,
                 font: styles.FONT,
-                color: styles.COLORS.legalText,
+                color: styles.COLORS.standardText,
               }),
+            ],
+            spacing: {after: styles.SPACING.afterParagraph},
+          }),
 
+          new Paragraph({
+            children: [
               new TextRun({
                 text: `to witness that I, ${groomFirstName} ${groomSurname},`,
                 size: styles.SIZES.text * 2,
                 font: styles.FONT,
-                color: styles.COLORS.legalText,
+                color: styles.COLORS.standardText,
               }),
+            ],
+            spacing: {after: styles.SPACING.afterParagraph},
+          }),
 
+          new Paragraph({
+            children: [
               new TextRun({
                 text: `take thee, ${brideFirstName} ${brideSurname}, to be my lawful wedded wife.`,
                 bold: true,
@@ -392,7 +402,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.legalText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: {after: styles.SPACING.afterParagraph},
           }),
 
           // HR Line
@@ -474,14 +484,24 @@ app.post("/generate-doc", async (req, res) => {
                 font: styles.FONT,
                 color: styles.COLORS.standardText,
               }),
+            ],
+            spacing: {after: styles.SPACING.afterParagraph},
+          }),
 
+          new Paragraph({
+            children: [
               new TextRun({
                 text: `to witness that I, ${brideFirstName} ${brideSurname},`,
                 size: styles.SIZES.text * 2,
                 font: styles.FONT,
                 color: styles.COLORS.standardText,
               }),
+            ],
+            spacing: {after: styles.SPACING.afterParagraph},
+          }),
 
+          new Paragraph({
+            children: [
               new TextRun({
                 text: `take thee, ${groomFirstName} ${groomSurname}, to be my lawful wedded husband.`,
                 bold: true,
@@ -490,7 +510,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.legalText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: {after: styles.SPACING.afterParagraph},
           }),
 
           // HR Line
