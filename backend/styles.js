@@ -10,10 +10,10 @@ module.exports = {
   },
 
   SIZES: {
-    title: 48,
-    sectionHeader: 36,
-    text: 28,
-    small: 24,
+    title: 24,
+    sectionHeader: 18,
+    text: 12,
+    small: 10,
   },
 
   SPACING: {
