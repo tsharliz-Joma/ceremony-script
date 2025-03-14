@@ -124,7 +124,7 @@ app.post("/generate-doc", async (req, res) => {
               new TextRun({
                 text: `Good afternoon, everyone. I hope you're all enjoying this wonderful day. Before we commence today's ceremony, I'd like to address a few housekeeping items.`,
                 spacing: {after: styles.SPACING.afterHeader},
-                size: styles.SIZES.text
+                size: styles.SIZES.text * 2,
               }),
             ],
           }),
