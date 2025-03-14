@@ -113,7 +113,7 @@ app.post("/generate-doc", async (req, res) => {
               new TextRun({
                 text: `Housekeeping`,
                 bold: true,
-                size: styles.SIZES.sectionHeader,
+                size: styles.SIZES.sectionHeader * 2,
                 color: styles.COLORS.title,
               }),
             ],
@@ -299,7 +299,7 @@ app.post("/generate-doc", async (req, res) => {
           // HR Line
           new Paragraph({
             border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            spacing: {after: styles.SPACING.afterTitle * 2},
           }),
 
           // Groom's Legal and Personal Vows (Nested Format)
