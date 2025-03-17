@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Ceremony Script Generator</title>
+    <!-- Flatpickr CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Wedding Ceremony Script Generator</h1>
+      <button id="darkModeToggle" class="dark-mode-btn">🌙 Dark Mode</button>
+      <p
+        >Fill in the details below to generate a customized wedding ceremony
+        script.</p
+      >
+
+      <form id="ceremonyForm">
+        <h2>Bride & Groom Information</h2>
+
+        <label for="groomFirstName">Groom's First Name</label>
+        <input
+          type="text"
+          id="groomFirstName"
+          name="groomFirstName"
+          placeholder="Enter groom's first name"
+          required />
+
+        <label for="groomSurname">Groom's Last Name</label>
+        <input
+          type="text"
+          id="groomSurname"
+          name="groomSurname"
+          placeholder="Enter groom's last name"
+          required />
+
+        <label for="brideFirstName">Bride's First Name</label>
+        <input
+          type="text"
+          id="brideFirstName"
+          name="brideFirstName"
+          placeholder="Enter bride's first name"
+          required />
+
+        <label for="brideSurname">Bride's Last Name</label>
+        <input
+          type="text"
+          id="brideSurname"
+          name="brideSurname"
+          placeholder="Enter bride's last name"
+          required />
+
+        <h2>Wedding Details</h2>
+
+        <label for="date">Date of Ceremony:</label>
+        <input type="text" id="date" placeholder="Pick a date" />
+
+        <label for="venue">Venue</label>
+        <input
+          type="text"
+          id="venue"
+          name="venue"
+          placeholder="Enter venue"
+          required />
+
+        <label for="witnessOne">Witness 1</label>
+        <input
+          type="text"
+          id="witnessOne"
+          name="witnessOne"
+          placeholder="Enter witness name"
+          required />
+
+        <label for="witnessTwo">Witness 2</label>
+        <input
+          type="text"
+          id="witnessTwo"
+          name="witnessTwo"
+          placeholder="Enter witness name"
+          required />
+
+        <h2>Ceremony Customization</h2>
+
+        <label for="bridesFather">Bride's Father</label>
+        <input
+          type="text"
+          id="bridesFather"
+          name="bridesFather"
+          placeholder="Enter bride's father's name" />
+
+        <label for="groomsmenSong">Groomsmen Arrival Song</label>
+        <input
+          type="text"
+          id="groomsmenSong"
+          name="groomsmenSong"
+          placeholder="Optional" />
+
+        <label for="bridesmaidSong">Bridesmaid Arrival Song</label>
+        <input
+          type="text"
+          id="bridesmaidSong"
+          name="bridesmaidSong"
+          placeholder="Optional" />
+
+        <label for="vowsGroom">Groom's Personal Vows</label>
+        <textarea
+          id="vowsGroom"
+          name="vowsGroom"
+          placeholder="Enter groom's personal vows"></textarea>
+
+        <label for="vowsBride">Bride's Personal Vows</label>
+        <textarea
+          id="vowsBride"
+          name="vowsBride"
+          placeholder="Enter bride's personal vows"></textarea>
+
+        <button type="submit" class="btn">Generate Script</button>
+      </form>
+
+      <div id="loading" class="hidden">Generating document...</div>
+    </div>
+
+    <script src="js/logic.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  </body>
+</html>
