@@ -60,7 +60,7 @@ const limiter = rateLimit({
   headers: true,
   handler: (req, res, next) => {
     sendAlertEmail(req.ip);
-    res.status(429).json({error: "Too many requests, please try again later."});
+    res.status(429).json({ error: "Too many requests, please try again later." });
   },
 });
 
@@ -70,10 +70,11 @@ app.use(
     origin: "https://ceremony-script.tsharliz.com",
     methods: "POST",
     allowedHeaders: ["Content-Type"],
-  }),
+  })
 );
 
 app.post("/generate-doc", async (req, res) => {
+
   const {
     groomFirstName,
     groomSurname,
@@ -88,17 +89,15 @@ app.post("/generate-doc", async (req, res) => {
     groomsmenSong,
     bridesmaidSong,
     bridesFather,
+    tone,
+    includeHumor,
+    ceremonyStyle,
+    customNote,
   } = req.body;
+  
 
-  if (
-    !groomFirstName ||
-    !groomSurname ||
-    !brideFirstName ||
-    !brideSurname ||
-    !date ||
-    !venue
-  ) {
-    return res.status(400).json({error: "Missing required fields"});
+  if (!groomFirstName || !groomSurname || !brideFirstName || !brideSurname || !date || !venue) {
+    return res.status(400).json({ error: "Missing required fields" });
   }
 
   // Construct the ceremony script document
@@ -111,7 +110,7 @@ app.post("/generate-doc", async (req, res) => {
             size: styles.SIZES.small * 2,
           },
           paragraph: {
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           },
         },
       },
@@ -140,7 +139,7 @@ app.post("/generate-doc", async (req, res) => {
                 text: `${groomFirstName} ${groomSurname} + ${brideFirstName} ${brideSurname}`,
                 bold: true,
                 size: styles.SIZES.text * 2,
-                spacing: {after: styles.SPACING.afterTitle},
+                spacing: { after: styles.SPACING.afterTitle },
               }),
             ],
             alignment: AlignmentType.CENTER,
@@ -151,7 +150,7 @@ app.post("/generate-doc", async (req, res) => {
               new TextRun({
                 text: `${date}`,
                 size: styles.SIZES.small * 2,
-                spacing: {after: styles.SPACING.afterHeader},
+                spacing: { after: styles.SPACING.afterHeader },
               }),
             ],
             alignment: AlignmentType.CENTER,
@@ -173,7 +172,7 @@ app.post("/generate-doc", async (req, res) => {
             children: [
               new TextRun({
                 text: `Good afternoon, everyone. I hope you're all enjoying this wonderful day. Before we commence today's ceremony, I'd like to address a few housekeeping items.`,
-                spacing: {after: styles.SPACING.afterHeader},
+                spacing: { after: styles.SPACING.afterHeader },
                 size: styles.SIZES.text * 2,
               }),
             ],
@@ -181,8 +180,8 @@ app.post("/generate-doc", async (req, res) => {
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle },
           }),
 
           // Giving Away
@@ -209,7 +208,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -221,13 +220,13 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle },
           }),
 
           // Welcome
@@ -247,13 +246,25 @@ app.post("/generate-doc", async (req, res) => {
           new Paragraph({
             children: [
               new TextRun({
+                text: introParagraph,
+                size: styles.SIZES.text * 2,
+                font: styles.FONT,
+                color: styles.COLORS.standardText,
+              }),
+            ],
+            spacing: { after: styles.SPACING.afterHeader },
+          }),
+
+          new Paragraph({
+            children: [
+              new TextRun({
                 text: `Thank you all for being here to celebrate and support ${brideFirstName} and ${groomFirstName}. Today marks the beginning of their next chapter together.`,
                 size: styles.SIZES.text * 2,
                 font: styles.FONT,
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           // Prayer
@@ -279,13 +290,13 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle },
           }),
 
           // Story of the Couple
@@ -311,13 +322,13 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText, // Apply standard text color
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle },
           }),
 
           // Monitum
@@ -344,13 +355,13 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.legalText, // Apply legal text color
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle * 2},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle * 2 },
           }),
 
           // Groom's Legal and Personal Vows (Nested Format)
@@ -376,7 +387,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -389,7 +400,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.vows,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -402,7 +413,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.sectionHeader,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -415,7 +426,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.vows,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -427,7 +438,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterParagraph},
+            spacing: { after: styles.SPACING.afterParagraph },
           }),
 
           new Paragraph({
@@ -439,7 +450,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterParagraph},
+            spacing: { after: styles.SPACING.afterParagraph },
           }),
 
           new Paragraph({
@@ -452,13 +463,13 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.legalText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterParagraph},
+            spacing: { after: styles.SPACING.afterParagraph },
           }),
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle },
           }),
 
           // Bride's Legal and Personal Vows (Nested Format)
@@ -484,7 +495,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -497,7 +508,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.vows,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -510,7 +521,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.sectionHeader,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -523,7 +534,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.vows,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -535,7 +546,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterParagraph},
+            spacing: { after: styles.SPACING.afterParagraph },
           }),
 
           new Paragraph({
@@ -547,7 +558,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterParagraph},
+            spacing: { after: styles.SPACING.afterParagraph },
           }),
 
           new Paragraph({
@@ -560,13 +571,13 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.legalText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterParagraph},
+            spacing: { after: styles.SPACING.afterParagraph },
           }),
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle },
           }),
 
           // Pronouncement
@@ -592,7 +603,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.standardText,
               }),
             ],
-            spacing: {after: styles.SPACING.afterHeader},
+            spacing: { after: styles.SPACING.afterHeader },
           }),
 
           new Paragraph({
@@ -605,13 +616,13 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.vows, // Highlighting the big moment
               }),
             ],
-            spacing: {after: 400},
+            spacing: { after: 400 },
           }),
 
           // HR Line
           new Paragraph({
-            border: {bottom: {style: BorderStyle.SINGLE, size: 6}},
-            spacing: {after: styles.SPACING.afterTitle},
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6 } },
+            spacing: { after: styles.SPACING.afterTitle },
           }),
 
           // Presentation
@@ -644,7 +655,7 @@ app.post("/generate-doc", async (req, res) => {
                 color: styles.COLORS.vows, // Highlighting the couple's name
               }),
             ],
-            spacing: {after: 400},
+            spacing: { after: 400 },
             alignment: AlignmentType.CENTER,
           }),
         ],
@@ -660,7 +671,7 @@ app.post("/generate-doc", async (req, res) => {
   res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
   res.setHeader(
     "Content-Type",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
   );
   res.send(buffer);
 });

@@ -25,6 +25,11 @@ export default function Ceremony() {
     funFact: "",
     vowsGroom: "",
     vowsBride: "",
+    tone: "",
+    includeHumor: "",
+    spiritualElements: "",
+    culturalTraditions: "",
+    specialRequests: "",
   });
 
   const handleChange = (e) => {
@@ -192,6 +197,62 @@ export default function Ceremony() {
 
             <div className="flex justify-between">
               <Button type="button" variant="secondary" onClick={() => setStep(1)}>
+                Back
+              </Button>
+              <Button type="button" onClick={() => setStep(3)}>
+                Next
+              </Button>
+            </div>
+          </>
+        )}
+
+        {step === 3 && (
+          <>
+            <h2 className="text-2xl font-bold text-[#8E7754]">Final Touches</h2>
+
+            <label className="block font-medium">Preferred Tone</label>
+            <select name="tone" className="border p-3 w-full rounded-md" onChange={handleChange}>
+              <option value="">Select a tone</option>
+              <option value="Formal">Formal</option>
+              <option value="Lighthearted">Lighthearted</option>
+              <option value="Funny">Funny</option>
+              <option value="Romantic">Romantic</option>
+            </select>
+
+            <label className="block font-medium mt-4">Include Humor?</label>
+            <select
+              name="includeHumor"
+              className="border p-3 w-full rounded-md"
+              onChange={handleChange}
+            >
+              <option value="">Select one</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+
+            <textarea
+              className="border p-3 w-full rounded-md mt-4"
+              name="spiritualElements"
+              placeholder="Any spiritual or religious elements to include?"
+              onChange={handleChange}
+            ></textarea>
+
+            <textarea
+              className="border p-3 w-full rounded-md"
+              name="culturalTraditions"
+              placeholder="Cultural traditions to mention?"
+              onChange={handleChange}
+            ></textarea>
+
+            <textarea
+              className="border p-3 w-full rounded-md"
+              name="specialRequests"
+              placeholder="Anything else you want to include?"
+              onChange={handleChange}
+            ></textarea>
+
+            <div className="flex justify-between">
+              <Button type="button" variant="secondary" onClick={() => setStep(2)}>
                 Back
               </Button>
               <Button type="submit" isLoading={loading}>
